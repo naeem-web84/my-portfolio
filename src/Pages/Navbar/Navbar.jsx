@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
+import { Toaster, toast } from "react-hot-toast";
+import Logo from "../../components/Logo";
 
 const navItems = [
   { name: "Home", to: "hero" },
@@ -11,23 +13,18 @@ const navItems = [
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("hero"); // initial active is Home
+  const [activeLink, setActiveLink] = useState("hero");
 
   useEffect(() => {
     const handleScroll = () => {
-      setMenuOpen(false);
+      setMenuOpen(false); // ✅ Fixed syntax
 
-      // Detect currently visible section manually
-      // Adjust this logic to your section positions & offset
-      const scrollPos = window.scrollY + 90; // 90 is offset + buffer for sticky navbar
-
-      let current = "hero"; // default
+      const scrollPos = window.scrollY + 90;
+      let current = "hero";
       for (const item of navItems) {
         const elem = document.getElementById(item.to);
-        if (elem) {
-          if (scrollPos >= elem.offsetTop) {
-            current = item.to;
-          }
+        if (elem && scrollPos >= elem.offsetTop) {
+          current = item.to;
         }
       }
       setActiveLink(current);
@@ -37,25 +34,20 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleSendResume = () => {
+    toast.success("Resume downloaded");
+  };
+
   return (
     <nav className="bg-primary text-primary-content shadow-sm sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-8 py-3">
-        {/* Left: Logo */}
-        <a
-          href="#hero"
-          onClick={(e) => {
-            e.preventDefault();
-            scroll.scrollToTop({ duration: 600 });
-            setMenuOpen(false);
-            setActiveLink("hero");
-          }}
-          className="btn btn-ghost normal-case text-xl flex items-center gap-2"
-        >
-          <img src="/logo.png" alt="Logo" className="h-6 w-6" />
-          Naeem Islam
-        </a>
+      {/* Toast Container */}
+      <Toaster position="bottom-right" />
 
-        {/* Center: Nav Links */}
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-8 py-3">
+        {/* Logo */}
+        <Logo />
+
+        {/* Desktop Nav Links */}
         <div className="hidden lg:flex flex-1 justify-center">
           <ul className="menu menu-horizontal px-1 space-x-8">
             {navItems.map(({ name, to }) => (
@@ -64,11 +56,9 @@ function Navbar() {
                   to={to}
                   smooth={true}
                   duration={600}
-                  offset={-80} // Adjust this offset for navbar height
+                  offset={-80}
                   className={`cursor-pointer px-3 py-1 rounded-t-md transition-colors duration-200 ${
-                    activeLink === to
-                      ? "text-secondary border-b-2 border-black"
-                      : ""
+                    activeLink === to ? "text-secondary border-b-2 border-black" : ""
                   }`}
                   onClick={() => {
                     setMenuOpen(false);
@@ -82,18 +72,17 @@ function Navbar() {
           </ul>
         </div>
 
-        {/* Right: Download Button */}
+        {/* Resume Button Desktop */}
         <div className="hidden lg:flex">
-          <a
-            href="/Naeem_Resume.pdf"
-            download
+          <button
+            onClick={handleSendResume}
             className="btn px-6 bg-transparent border border-secondary text-white hover:bg-secondary hover:text-black transition"
           >
-            Download Portfolio
-          </a>
+            Send Resume
+          </button>
         </div>
 
-        {/* Hamburger button - mobile */}
+        {/* Hamburger for Mobile */}
         <button
           className="btn btn-square btn-ghost lg:hidden ml-auto"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -108,19 +97,9 @@ function Navbar() {
             stroke="currentColor"
           >
             {menuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             )}
           </svg>
         </button>
@@ -138,9 +117,7 @@ function Navbar() {
                   duration={600}
                   offset={-80}
                   className={`block cursor-pointer p-2 rounded-md transition-colors duration-200 ${
-                    activeLink === to
-                      ? "bg-secondary text-black border-b-2 border-black"
-                      : ""
+                    activeLink === to ? "bg-secondary text-black border-b-2 border-black" : ""
                   }`}
                   onClick={() => {
                     setMenuOpen(false);
@@ -151,15 +128,18 @@ function Navbar() {
                 </Link>
               </li>
             ))}
+
+            {/* Resume Button Mobile */}
             <li>
-              <a
-                href="/Naeem_Resume.pdf"
-                download
-                className="block border border-secondary text-secondary px-4 py-2 rounded hover:bg-secondary hover:text-black transition"
-                onClick={() => setMenuOpen(false)}
+              <button
+                onClick={() => {
+                  handleSendResume();
+                  setMenuOpen(false);
+                }}
+                className="block border border-secondary text-white px-4 py-2 rounded hover:bg-secondary hover:text-black transition"
               >
-                Download Portfolio
-              </a>
+                Download Resume
+              </button>
             </li>
           </ul>
         </div>

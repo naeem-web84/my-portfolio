@@ -25,66 +25,77 @@ import { FiExternalLink } from "react-icons/fi";
 const projects = [
   {
     name: "ActForBD - EJP",
-    description: "NGO donation platform for managing users, causes, and transactions.",
+    description: "A platform where people can meet, talk, add and share their experiences.",
     image: actImg,
     frontend: [
-      <SiReact className="text-cyan-400" />,
-      <SiTailwindcss className="text-teal-400" />,
-      <SiDaisyui className="text-green-400" />,
-      <SiJavascript className="text-yellow-400" />,
+      <SiReact className="text-cyan-400" key="react" />,
+      <SiTailwindcss className="text-teal-400" key="tailwind" />,
+      <SiDaisyui className="text-green-400" key="daisyui" />,
+      <SiJavascript className="text-yellow-400" key="js" />,
     ],
     backend: [
-      <SiNodedotjs className="text-lime-500" />,
-      <SiExpress className="text-gray-300" />,
-      <SiMongodb className="text-green-500" />,
-      <SiJsonwebtokens className="text-red-400" />,
+      <SiNodedotjs className="text-lime-500" key="node" />,
+      <SiExpress className="text-gray-300" key="express" />,
+      <SiMongodb className="text-green-500" key="mongodb" />,
+      <SiJsonwebtokens className="text-red-400" key="jwt" />,
     ],
     links: {
       client: "https://github.com/naeem-web84/a11-actforbd-EJP",
       server: "https://github.com/naeem-web84/a11-actforbd-server-EJP",
     },
     live: "https://actforbd.web.app/",
+    challenges:
+      "Handling both the frontend and backend was tough. It is a larger application; to make it look good and smooth, I had to work hard and smart.",
+    improvements:
+      "Add dashboards and enhance accessibility for wider user reach. Make it more comfortable for users.",
   },
   {
     name: "Hobby Hub - EJP",
     description: "Marketplace for hobby products with dashboard and Stripe integration.",
     image: hobby,
     frontend: [
-      <SiReact className="text-cyan-400" />,
-      <SiTailwindcss className="text-teal-400" />,
-      <SiHtml5 className="text-orange-500" />,
+      <SiReact className="text-cyan-400" key="react" />,
+      <SiTailwindcss className="text-teal-400" key="tailwind" />,
+      <SiHtml5 className="text-orange-500" key="html" />,
     ],
     backend: [
-      <SiNodedotjs className="text-lime-500" />,
-      <SiExpress className="text-gray-300" />,
-      <SiMongodb className="text-green-500" />,
-      <SiJsonwebtokens className="text-red-400" />,
+      <SiNodedotjs className="text-lime-500" key="node" />,
+      <SiExpress className="text-gray-300" key="express" />,
+      <SiMongodb className="text-green-500" key="mongodb" />,
+      <SiJsonwebtokens className="text-red-400" key="jwt" />,
     ],
     links: {
       client: "https://github.com/naeem-web84/hobby-hub-client-EJP",
       server: "https://github.com/naeem-web84/hobby-hub-server-EJP",
     },
     live: "https://hobby-hub-app-bb214.web.app/",
+    challenges: "Maintaining responsiveness and at the same time making a good UI was challenging.",
+    improvements:
+      "Plan to build a mobile app version and add personalized recommendations for users.",
   },
   {
     name: "FrostBox",
     description: "Cloud storage app with Firebase integration and secure auth.",
     image: frost,
     frontend: [
-      <SiReact className="text-cyan-400" />,
-      <SiTailwindcss className="text-teal-400" />,
-      <SiFirebase className="text-yellow-500" />,
+      <SiReact className="text-cyan-400" key="react" />,
+      <SiTailwindcss className="text-teal-400" key="tailwind" />,
+      <SiFirebase className="text-yellow-500" key="firebase" />,
     ],
     backend: [],
     links: {
       client: "https://github.com/naeem-web84/frostBox-new",
     },
     live: "https://frost-box-a9-ab4d6.web.app/",
+    challenges:
+      "Ensuring secure file upload and download while managing user authentication effectively.",
+    improvements: "Add offline support and improve sharing capabilities with permission controls.",
   },
 ];
 
 function Projects() {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [detailProject, setDetailProject] = useState(null);
+  const [githubModalProject, setGithubModalProject] = useState(null);
 
   useEffect(() => {
     AOS.init({ duration: 800, easing: "ease-in-out", once: true });
@@ -133,61 +144,121 @@ function Projects() {
               )}
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex gap-4 mt-auto pt-6">
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 btn border border-secondary bg-black text-white hover:bg-secondary hover:text-black hover:border-white transition"
-              >
-                <FiExternalLink className="mr-2" /> View Site
-              </a>
+            {/* Only View Details Button */}
+            <div className="mt-auto pt-6">
               <button
-                onClick={() => setSelectedProject(project)}
-                className="flex-1 btn border border-secondary bg-black text-white hover:bg-secondary hover:text-black hover:border-white transition"
+                onClick={() => setDetailProject(project)}
+                className="border border-secondary text-secondary px-4 py-2 rounded hover:bg-secondary hover:text-black transition w-full"
               >
-                <SiGithub className="mr-2" /> GitHub
+                View Details
               </button>
             </div>
           </div>
         ))}
       </div>
 
+      {/* Modal for Project Details */}
+      {detailProject && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto p-6">
+          <div className="bg-primary text-primary-content p-8 rounded-xl w-full max-w-4xl border border-secondary max-h-[90vh] overflow-y-auto shadow-lg">
+            <h3 className="text-4xl font-bold mb-6 text-secondary">{detailProject.name}</h3>
+            <img
+              src={detailProject.image}
+              alt={detailProject.name}
+              className="rounded-lg mb-6 object-cover max-h-72 w-full"
+            />
+            <p className="mb-6 text-accent text-lg">{detailProject.description}</p>
+
+            {/* Tech Stack */}
+            <div className="mb-6">
+              <h4 className="font-semibold mb-3 text-white text-xl">Frontend Technologies:</h4>
+              <div className="flex flex-wrap gap-3 text-3xl">{detailProject.frontend}</div>
+            </div>
+            {detailProject.backend.length > 0 && (
+              <div className="mb-6">
+                <h4 className="font-semibold mb-3 text-white text-xl">Backend Technologies:</h4>
+                <div className="flex flex-wrap gap-3 text-3xl">{detailProject.backend}</div>
+              </div>
+            )}
+
+            {/* Live & GitHub Buttons */}
+            <div className="mb-8 flex gap-6 justify-center">
+              {detailProject.live && (
+                <a
+                  href={detailProject.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-secondary text-secondary px-6 py-3 rounded hover:bg-secondary hover:text-black transition flex items-center gap-2 text-lg"
+                >
+                  Live Site <FiExternalLink className="inline" />
+                </a>
+              )}
+              <button
+                onClick={() => setGithubModalProject(detailProject)}
+                className="border border-secondary text-secondary px-6 py-3 rounded hover:bg-secondary hover:text-black transition flex items-center gap-2 text-lg"
+              >
+                GitHub <SiGithub />
+              </button>
+            </div>
+
+            {/* Challenges */}
+            <div className="mb-6">
+              <h4 className="font-semibold mb-3 text-white text-xl">Challenges Faced:</h4>
+              <p className="text-accent text-lg">{detailProject.challenges}</p>
+            </div>
+
+            {/* Improvements */}
+            <div>
+              <h4 className="font-semibold mb-3 text-white text-xl">
+                Potential Improvements & Future Plans:
+              </h4>
+              <p className="text-accent text-lg">{detailProject.improvements}</p>
+            </div>
+
+            <button
+              onClick={() => setDetailProject(null)}
+              className="mt-8  border border-secondary text-secondary px-4 py-2 rounded hover:bg-secondary hover:text-black transition w-full text-lg"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Modal for GitHub Links */}
-      {selectedProject && (
+      {githubModalProject && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-primary text-primary-content p-6 rounded-xl w-11/12 max-w-md text-center border border-secondary">
-            <h3 className="text-xl font-semibold mb-4 text-secondary">Repository Links</h3>
-            <div className="space-y-2 text-sm">
+            <h3 className="text-2xl font-semibold mb-6 text-secondary">Repository Links</h3>
+            <div className="space-y-4 text-lg">
               <p>
                 <span className="font-semibold">Client:</span>{" "}
                 <a
-                  href={selectedProject.links.client}
+                  href={githubModalProject.links.client}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-accent underline break-words"
                 >
-                  {selectedProject.links.client}
+                  {githubModalProject.links.client}
                 </a>
               </p>
-              {selectedProject.links.server && (
+              {githubModalProject.links.server && (
                 <p>
                   <span className="font-semibold">Server:</span>{" "}
                   <a
-                    href={selectedProject.links.server}
+                    href={githubModalProject.links.server}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-accent underline break-words"
                   >
-                    {selectedProject.links.server}
+                    {githubModalProject.links.server}
                   </a>
                 </p>
               )}
             </div>
             <button
-              onClick={() => setSelectedProject(null)}
-              className="mt-6 btn border border-secondary bg-black text-white hover:bg-secondary hover:text-black hover:border-white transition"
+              onClick={() => setGithubModalProject(null)}
+              className="mt-6 border border-secondary text-secondary px-4 py-2 rounded hover:bg-secondary hover:text-black transition w-full"
             >
               Close
             </button>

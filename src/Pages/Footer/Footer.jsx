@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-scroll";
 import { FaGithub, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
+import Logo from "../../components/Logo";
 
 export default function Footer() {
   const socialLinks = [
     {
       icon: <FaGithub />,
-      url: "https://github.com/yourusername",
+      url: "https://github.com/naeem-web84",
     },
     {
       icon: <FaLinkedinIn />,
-      url: "https://linkedin.com/in/yourprofile",
+      url: "https://www.linkedin.com/in/naeem-islam-dv474/",
     },
     {
       icon: <FaEnvelope />,
-      url: "mailto:youremail@example.com",
+      url: "naeemislam.hasan74@gmail.com",
     },
   ];
 
@@ -31,8 +32,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-6">
         {/* Left - Logo & Name */}
         <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="Logo" className="h-8 w-8" />
-          <span className="text-lg font-semibold tracking-wider">Naeem Islam</span>
+         <Logo></Logo>
         </div>
 
         {/* Center - Smooth Scroll Nav Links (no active styling) */}
@@ -43,7 +43,7 @@ export default function Footer() {
               to={to}
               smooth={true}
               duration={600}
-              offset={-80} // adjust if needed for sticky nav
+              offset={-80}  
               className="cursor-pointer px-3 py-1 rounded-md transition-colors duration-200 hover:text-secondary"
             >
               {name}

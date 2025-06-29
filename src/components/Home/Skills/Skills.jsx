@@ -16,16 +16,13 @@ import {
   SiFirebase,
 } from "react-icons/si";
 
-const frontendSkills = [
+const skills = [
   { name: "HTML5", icon: <SiHtml5 className="text-orange-500" />, color: "text-orange-500" },
   { name: "CSS3", icon: <SiCss3 className="text-blue-600" />, color: "text-blue-600" },
   { name: "JavaScript", icon: <SiJavascript className="text-yellow-400" />, color: "text-yellow-400" },
   { name: "React", icon: <SiReact className="text-cyan-400" />, color: "text-cyan-400" },
   { name: "Tailwind", icon: <SiTailwindcss className="text-teal-400" />, color: "text-teal-400" },
   { name: "DaisyUI", icon: <SiDaisyui className="text-green-400" />, color: "text-green-400" },
-];
-
-const backendSkills = [
   { name: "Node.js", icon: <SiNodedotjs className="text-lime-500" />, color: "text-lime-500" },
   { name: "Express.js", icon: <SiExpress className="text-gray-300" />, color: "text-gray-300" },
   { name: "MongoDB", icon: <SiMongodb className="text-green-500" />, color: "text-green-500" },
@@ -37,21 +34,6 @@ function Skills() {
   useEffect(() => {
     AOS.init({ duration: 700, once: true });
   }, []);
-
-  const renderStaticGrid = (skills) => (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-      {skills.map(({ name, icon, color }, i) => (
-        <div
-          key={i}
-          className="group relative flex flex-col items-center justify-center p-4 bg-white/5 border border-white rounded-xl text-white text-xs sm:text-sm transition-transform duration-300 hover:scale-105 overflow-hidden"
-        >
-          <div className="text-2xl mb-1">{icon}</div>
-          <span className={`font-semibold text-sm sm:text-base ${color}`}>{name}</span>
-          <div className="absolute bottom-0 left-0 w-full h-[2px] bg-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
-        </div>
-      ))}
-    </div>
-  );
 
   return (
     <section className="py-20 px-4 sm:px-6 md:px-10 bg-primary text-primary-content font-urbanist">
@@ -66,27 +48,18 @@ function Skills() {
           </p>
         </div>
 
-        {/* Frontend & Backend Side-by-Side */}
-        <div
-          className="grid lg:grid-cols-2 justify-between gap-12"
-          data-aos="fade-up"
-          data-aos-delay="100"
-        >
-          {/* Frontend */}
-          <div className="">
-            <h3 className="text-2xl text-secondary font-bold mb-6 text-center md:text-left">
-              Frontend
-            </h3>
-            {renderStaticGrid(frontendSkills)}
-          </div>
- 
-          {/* Backend */}
-          <div className="">
-            <h3 className="text-2xl text-secondary font-bold mb-6 text-center md:text-left">
-              Backend
-            </h3>
-            {renderStaticGrid(backendSkills)}
-          </div>
+        {/* Combined skills grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-aos="fade-up" data-aos-delay="100">
+          {skills.map(({ name, icon, color }, i) => (
+            <div
+              key={i}
+              className="group relative flex flex-col items-center justify-center p-4 bg-white/5 border border-white rounded-xl text-white text-xs sm:text-sm transition-transform duration-300 hover:scale-105 overflow-hidden"
+            >
+              <div className="text-2xl mb-1">{icon}</div>
+              <span className={`font-semibold text-sm sm:text-base ${color}`}>{name}</span>
+              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
+            </div>
+          ))}
         </div>
       </div>
     </section>
