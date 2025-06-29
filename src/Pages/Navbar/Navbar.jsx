@@ -78,7 +78,7 @@ function Navbar() {
             onClick={handleSendResume}
             className="btn px-6 bg-transparent border border-secondary text-white hover:bg-secondary hover:text-black transition"
           >
-            Send Resume
+            Download Resume
           </button>
         </div>
 
