@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { Player } from '@lottiefiles/react-lottie-player';
-import lottieAnimation from '../../assets/lottie/Animation - 1751141421232.json';
+import profileImage from '../../assets/image/FB_IMG_1637937956758.jpg';
 
 function AboutMe() {
   useEffect(() => {
@@ -10,34 +9,33 @@ function AboutMe() {
   }, []);
 
   return (
-    <section id="about" className="my-8 relative border-t border-t-accent">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col items-center">
-
-        {/* Lottie animation on top-left */}
+    <section
+      id="about"
+      className="my-12 px-4 py-8 bg-primary text-primary-content"
+    >
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center lg:items-start gap-10">
+        {/* Left: Static Image */}
         <div
           data-aos="fade-right"
-          className="w-40 self-start"
-          style={{ maxWidth: '160px' }}
+          className="w-full lg:w-1/2 flex justify-center"
         >
-          <Player
-            autoplay
-            loop
-            src={lottieAnimation}
-            style={{ height: '160px', width: '160px' }}
+          <img
+            src={profileImage}
+            alt="Profile"
+            className="rounded-lg shadow-lg w-full max-w-sm object-cover"
           />
         </div>
 
-        {/* Text content below Lottie with 2s delay and slide-in from right */}
+        {/* Right: Text Only */}
         <div
-          data-aos="fade-right"
-          data-aos-delay="2000"
-          className="lg:text-left mt-[-40px] opacity-0 translate-x-10"
-          data-aos-anchor-placement="top-bottom"
-          data-aos-once="true"
+          data-aos="fade-left"
+          data-aos-delay="300"
+          className="w-full lg:w-1/2"
         >
-          <p className="text-lg text-accent font-medium mb-6">— Who I Am?</p>
+          <h2 className="text-3xl font-bold mb-0">About Me</h2>
+          <p className="text-lg font-medium text-secondary mb-2 ml-8">— Who Am I?</p>
 
-          <p className="leading-relaxed">
+          <p className="text-white leading-relaxed text-base md:text-lg mb-6">
             Hi, I’m <span className="font-semibold">Naeem</span>.  
             I’ve had a deep interest in web development for years and eventually committed to learning — starting what became the most challenging and rewarding journey of my life.  
             <br /><br />
