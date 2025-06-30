@@ -1,0 +1,43 @@
+[
+  {
+    "name": "ActForBD - EJP",
+    "description": "A platform where people can meet, talk, add and share their experiences.",
+    "image": "/images/actforbd.png",
+    "frontend": ["react", "tailwind", "daisyui", "javascript"],
+    "backend": ["node", "express", "mongodb", "jwt"],
+    "links": {
+      "client": "https://github.com/naeem-web84/a11-actforbd-EJP",
+      "server": "https://github.com/naeem-web84/a11-actforbd-server-EJP"
+    },
+    "live": "https://actforbd.web.app/",
+    "challenges": "Handling both the frontend and backend was tough...",
+    "improvements": "Add dashboards and enhance accessibility..."
+  },
+  {
+    "name": "Hobby Hub - EJP",
+    "description": "Marketplace for hobby products with dashboard and Stripe integration.",
+    "image": "/images/hobbyHub.png",
+    "frontend": ["react", "tailwind", "html"],
+    "backend": ["node", "express", "mongodb", "jwt"],
+    "links": {
+      "client": "https://github.com/naeem-web84/hobby-hub-client-EJP",
+      "server": "https://github.com/naeem-web84/hobby-hub-server-EJP"
+    },
+    "live": "https://hobby-hub-app-bb214.web.app/",
+    "challenges": "Maintaining responsiveness and UI...",
+    "improvements": "Plan to build a mobile app..."
+  },
+  {
+    "name": "FrostBox",
+    "description": "Cloud storage app with Firebase integration and secure auth.",
+    "image": "/images/frostbox.png",
+    "frontend": ["react", "tailwind", "firebase"],
+    "backend": [],
+    "links": {
+      "client": "https://github.com/naeem-web84/frostBox-new"
+    },
+    "live": "https://frost-box-a9-ab4d6.web.app/",
+    "challenges": "Ensuring secure file upload...",
+    "improvements": "Add offline support..."
+  }
+]
