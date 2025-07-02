@@ -17,7 +17,7 @@ function Hero() {
         <div className="flex-1 text-center lg:text-left space-y-6">
           <h4 className="text-xl font-bold text-white">Naeem Islam</h4>
           <h1 className="text-4xl md:text-5xl font-extrabold text-secondary leading-tight">
-            Full Stack Web Developer
+            Full-Stack MERN Developer
           </h1>
           <p className="text-accent text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
             I specialize in crafting immersive user experiences using modern frontend technologies. I focus on clean UIs, responsive design, and smooth interactions.
