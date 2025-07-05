@@ -17,17 +17,17 @@ import {
 } from "react-icons/si";
 
 const skills = [
-  { name: "HTML5", icon: <SiHtml5 className="text-orange-500" />, color: "text-orange-500" },
-  { name: "CSS3", icon: <SiCss3 className="text-blue-600" />, color: "text-blue-600" },
-  { name: "JavaScript", icon: <SiJavascript className="text-yellow-400" />, color: "text-yellow-400" },
-  { name: "React", icon: <SiReact className="text-cyan-400" />, color: "text-cyan-400" },
-  { name: "Tailwind", icon: <SiTailwindcss className="text-teal-400" />, color: "text-teal-400" },
-  { name: "DaisyUI", icon: <SiDaisyui className="text-green-400" />, color: "text-green-400" },
-  { name: "Node.js", icon: <SiNodedotjs className="text-lime-500" />, color: "text-lime-500" },
-  { name: "Express.js", icon: <SiExpress className="text-gray-300" />, color: "text-gray-300" },
-  { name: "MongoDB", icon: <SiMongodb className="text-green-500" />, color: "text-green-500" },
-  { name: "Stripe", icon: <SiStripe className="text-indigo-400" />, color: "text-indigo-400" },
-  { name: "Firebase", icon: <SiFirebase className="text-yellow-500" />, color: "text-yellow-500" },
+  { name: "HTML5", icon: <SiHtml5 className="text-orange-500" /> },
+  { name: "CSS3", icon: <SiCss3 className="text-blue-600" /> },
+  { name: "JavaScript", icon: <SiJavascript className="text-yellow-400" /> },
+  { name: "React", icon: <SiReact className="text-cyan-400" /> },
+  { name: "Tailwind", icon: <SiTailwindcss className="text-teal-400" /> },
+  { name: "DaisyUI", icon: <SiDaisyui className="text-green-400" /> },
+  { name: "Node.js", icon: <SiNodedotjs className="text-lime-500" /> },
+  { name: "Express.js", icon: <SiExpress className="text-gray-500" /> },
+  { name: "MongoDB", icon: <SiMongodb className="text-green-600" /> },
+  { name: "Stripe", icon: <SiStripe className="text-indigo-400" /> },
+  { name: "Firebase", icon: <SiFirebase className="text-yellow-500" /> },
 ];
 
 function Skills() {
@@ -36,28 +36,42 @@ function Skills() {
   }, []);
 
   return (
-    <section className="py-20 px-4 sm:px-6 md:px-10 bg-primary text-primary-content font-urbanist">
-      <div className="max-w-6xl mx-auto">
-        {/* Title + Description */}
-        <div className="text-center mb-14" data-aos="fade-up">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-3">
+    <section
+      id="skills"
+      className="py-20 px-6 sm:px-10 bg-white text-black font-urbanist"
+    >
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center lg:items-start gap-16">
+        {/* Left side - Text */}
+        <div
+          className="lg:w-1/2"
+          data-aos="fade-right"
+        >
+          <h2 className="text-4xl font-extrabold mb-4 text-[#26313F]">
             My Skills
           </h2>
-          <p className="text-accent text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Technologies I use to build modern, scalable, and elegant web experiences.
+          <p className="text-lg leading-relaxed max-w-lg">
+            I use a wide range of modern technologies to build scalable and elegant web experiences. My stack includes frontend, backend, and deployment tools that help me deliver quality and performance.
+            <br /><br />
+            From core web standards like HTML5 and CSS3 to modern frameworks like React and Tailwind, plus backend technologies like Node.js, Express, and databases such as MongoDB — I aim to craft seamless, user-friendly digital products.
           </p>
         </div>
 
-        {/* Combined skills grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-aos="fade-up" data-aos-delay="100">
-          {skills.map(({ name, icon, color }, i) => (
+        {/* Right side - Icons grid with staggered fade-up */}
+        <div
+          className="lg:w-1/2 grid grid-cols-3 sm:grid-cols-4 gap-8"
+          data-aos="fade-left"
+          data-aos-delay="300"
+        >
+          {skills.map(({ name, icon }, idx) => (
             <div
-              key={i}
-              className="group relative flex flex-col items-center justify-center p-4 bg-white/5 border border-white rounded-xl text-white text-xs sm:text-sm transition-transform duration-300 hover:scale-105 overflow-hidden"
+              key={idx}
+              className="flex flex-col items-center gap-2 p-4 rounded-lg border border-[#64DA91] hover:shadow-lg transition-shadow cursor-default"
+              data-aos="fade-up"
+              data-aos-delay={idx * 150}
+              data-aos-once="true"
             >
-              <div className="text-2xl mb-1">{icon}</div>
-              <span className={`font-semibold text-sm sm:text-base ${color}`}>{name}</span>
-              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
+              <div className="text-4xl">{icon}</div>
+              <span className="text-base font-semibold text-black">{name}</span>
             </div>
           ))}
         </div>

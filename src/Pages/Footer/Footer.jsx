@@ -1,41 +1,67 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import { FaGithub, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 import Logo from "../../components/Logo";
 
-export default function Footer() {
-  const socialLinks = [
-    {
-      icon: <FaGithub />,
-      url: "https://github.com/naeem-web84",
-    },
-    {
-      icon: <FaLinkedinIn />,
-      url: "https://www.linkedin.com/in/naeem-islam-dv474/",
-    },
-    {
-      icon: <FaEnvelope />,
-      url: "naeemislam.hasan74@gmail.com",
-    },
-  ];
+const footerNavItems = [
+  { name: "Home", to: "hero" },
+  { name: "About", to: "about" },
+  { name: "Skills", to: "skills" },
+  { name: "Projects", to: "projects" },
+  { name: "Contact", to: "contact" },
+];
 
-  const footerNavItems = [
-    { name: "Home", to: "hero" },
-    { name: "About", to: "about" },
-    { name: "Skills", to: "skills" },
-    { name: "Projects", to: "projects" },
-    { name: "Contact", to: "contact" },
-  ];
+const socialLinks = [
+  {
+    icon: <FaGithub />,
+    url: "https://github.com/naeem-web84",
+  },
+  {
+    icon: <FaLinkedinIn />,
+    url: "https://www.linkedin.com/in/naeem-islam-dv474/",
+  },
+  {
+    icon: <FaEnvelope />,
+    url: "mailto:naeemislam.hasan74@gmail.com",
+  },
+];
+
+export default function Footer() {
+  const [activeLink, setActiveLink] = useState("hero");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 90;
+      let current = "hero";
+      for (const item of footerNavItems) {
+        const elem = document.getElementById(item.to);
+        if (elem && scrollPos >= elem.offsetTop) {
+          current = item.to;
+        }
+      }
+      setActiveLink(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <footer className="bg-primary text-white py-10 border-t border-gray-700">
-      <div className="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-6">
-        {/* Left - Logo & Name */}
+    <footer
+      className="py-10 border-t"
+      style={{
+        backgroundColor: "var(--color-light-bg)",
+        color: "var(--color-dark-primary)",
+        borderColor: "rgba(38, 49, 63, 0.2)",
+      }}
+    >
+      <div className="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-6">
+        {/* Left - Logo */}
         <div className="flex items-center gap-2">
-         <Logo></Logo>
+          <Logo />
         </div>
 
-        {/* Center - Smooth Scroll Nav Links (no active styling) */}
+        {/* Center - Nav Links */}
         <div className="flex gap-6 text-sm">
           {footerNavItems.map(({ name, to }) => (
             <Link
@@ -43,8 +69,13 @@ export default function Footer() {
               to={to}
               smooth={true}
               duration={600}
-              offset={-80}  
-              className="cursor-pointer px-3 py-1 rounded-md transition-colors duration-200 hover:text-secondary"
+              offset={-80}
+              className={`cursor-pointer px-3 py-1 transition duration-200 rounded-md font-medium ${
+                activeLink === to
+                  ? "text-[var(--color-dark-primary)] border-b-2 border-[var(--color-dark-primary)]"
+                  : "hover:text-[var(--color-dark-primary)]"
+              }`}
+              onClick={() => setActiveLink(to)}
             >
               {name}
             </Link>
@@ -53,14 +84,17 @@ export default function Footer() {
 
         {/* Right - Social Icons */}
         <div className="flex gap-4 text-lg">
-          {socialLinks.map((link, index) => (
+          {socialLinks.map((link, idx) => (
             <a
-              key={index}
+              key={idx}
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-secondary transition"
               aria-label={link.url}
+              className="transition-colors"
+              style={{ color: "var(--color-dark-primary)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-accent)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-dark-primary)")}
             >
               {link.icon}
             </a>
@@ -69,7 +103,10 @@ export default function Footer() {
       </div>
 
       {/* Bottom copyright */}
-      <div className="text-center text-xs text-gray-400 mt-6">
+      <div
+        className="text-center text-xs mt-6"
+        style={{ color: "rgba(38, 49, 63, 0.6)" }}
+      >
         © {new Date().getFullYear()} Naeem Islam. All rights reserved.
       </div>
     </footer>

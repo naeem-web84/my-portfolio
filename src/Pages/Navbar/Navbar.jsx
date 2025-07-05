@@ -17,8 +17,7 @@ function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setMenuOpen(false); // ✅ Fixed syntax
-
+      setMenuOpen(false);
       const scrollPos = window.scrollY + 90;
       let current = "hero";
       for (const item of navItems) {
@@ -39,8 +38,13 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-primary text-primary-content shadow-sm sticky top-0 z-50">
-      {/* Toast Container */}
+    <nav
+      className="shadow-sm sticky top-0 z-50"
+      style={{
+        backgroundColor: "var(--color-light-bg)",
+        color: "var(--color-dark-primary)",
+      }}
+    >
       <Toaster position="bottom-right" />
 
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-8 py-3">
@@ -57,8 +61,10 @@ function Navbar() {
                   smooth={true}
                   duration={600}
                   offset={-80}
-                  className={`cursor-pointer px-3 py-1 rounded-t-md transition-colors duration-200 ${
-                    activeLink === to ? "text-secondary border-b-2 border-black" : ""
+                  className={`cursor-pointer px-3 py-1 transition duration-200 rounded-md font-medium ${
+                    activeLink === to
+                      ? "text-[var(--color-dark-primary)] border-b-2 border-[var(--color-dark-primary)]"
+                      : "hover:text-[var(--color-dark-primary)]"
                   }`}
                   onClick={() => {
                     setMenuOpen(false);
@@ -72,34 +78,56 @@ function Navbar() {
           </ul>
         </div>
 
-        {/* Resume Button Desktop */}
+        {/* Desktop Resume Button */}
         <div className="hidden lg:flex">
           <button
             onClick={handleSendResume}
-            className="btn px-6 bg-transparent border border-secondary text-white hover:bg-secondary hover:text-black transition"
+            className="px-4 py-2 rounded transition border"
+            style={{
+              color: "var(--color-dark-primary)",
+              borderColor: "var(--color-dark-primary)",
+              backgroundColor: "transparent",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--color-dark-primary)";
+              e.currentTarget.style.color = "#FFFFFF";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.color = "var(--color-dark-primary)";
+            }}
           >
             Download Resume
           </button>
         </div>
 
-        {/* Hamburger for Mobile */}
+        {/* Mobile Toggle */}
         <button
           className="btn btn-square btn-ghost lg:hidden ml-auto"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle Menu"
-          aria-expanded={menuOpen}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-secondary"
+            className="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
+            style={{ color: "var(--color-dark-primary)" }}
           >
             {menuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             )}
           </svg>
         </button>
@@ -107,7 +135,10 @@ function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-primary text-white px-6 pb-4">
+        <div
+          className="lg:hidden px-6 pb-4"
+          style={{ backgroundColor: "var(--color-light-bg)", color: "var(--color-dark-primary)" }}
+        >
           <ul className="flex flex-col gap-3">
             {navItems.map(({ name, to }) => (
               <li key={name}>
@@ -116,8 +147,10 @@ function Navbar() {
                   smooth={true}
                   duration={600}
                   offset={-80}
-                  className={`block cursor-pointer p-2 rounded-md transition-colors duration-200 ${
-                    activeLink === to ? "bg-secondary text-black border-b-2 border-black" : ""
+                  className={`block p-2 rounded-md transition cursor-pointer ${
+                    activeLink === to
+                      ? "bg-[var(--color-dark-primary)] text-white"
+                      : "hover:bg-gray-200"
                   }`}
                   onClick={() => {
                     setMenuOpen(false);
@@ -128,15 +161,26 @@ function Navbar() {
                 </Link>
               </li>
             ))}
-
-            {/* Resume Button Mobile */}
             <li>
               <button
                 onClick={() => {
                   handleSendResume();
                   setMenuOpen(false);
                 }}
-                className="block border border-secondary text-white px-4 py-2 rounded hover:bg-secondary hover:text-black transition"
+                className="w-full px-4 py-2 rounded transition border cursor-pointer"
+                style={{
+                  color: "var(--color-dark-primary)",
+                  borderColor: "var(--color-dark-primary)",
+                  backgroundColor: "transparent",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "var(--color-dark-primary)";
+                  e.currentTarget.style.color = "#FFFFFF";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                  e.currentTarget.style.color = "var(--color-dark-primary)";
+                }}
               >
                 Download Resume
               </button>

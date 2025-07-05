@@ -17,13 +17,14 @@ export default function Logo() {
       >
         <path
           d="M20 80V20C20 18 22.5 17.5 23.5 19L76 78C77 79.5 75 82 73 81L26.5 34.5C25.5 33.5 24 34.2 24 35.5V80"
-          stroke="#64da91"
+          stroke="#26313F"     // dark color
           strokeWidth="8"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
       </svg>
-      <span className="ml-[-8px] text-lg font-semibold tracking-tight text-transparent bg-gradient-to-r from-[#64da91] via-[#A9A9A9] to-[#64da91] bg-[200%] bg-clip-text animate-gradient-x font-urbanist">
+
+      <span className="ml-[-8px] text-lg font-semibold tracking-tight font-urbanist text-[#26313F]">
         Naeem
       </span>
     </div>

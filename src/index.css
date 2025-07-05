@@ -1,41 +1,35 @@
- @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
- @import "tailwindcss"; 
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
 
+@plugin "daisyui" {
+    themes: light --default, dark
+}
 
- @plugin "daisyui" {
-     themes: light --default, dark
- }
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    --color-primary: #FFFFFF;
+    --color-secondary: #000000; 
+}
 
- @plugin "daisyui/theme" {
-     name: "light";
-     default: true;
-     --color-primary: #151C25;
-     --color-secondary: #64da91;
-     --color-accent: #A9A9A9;
- }
- /* @plugin "daisyui/theme" {
-     name: "light";
-     default: true;
-     --color-primary: #FFFFFF;
-     --color-secondary: #55E5A4;
-     --color-accent: #101C1B;
- } */
- 
- html {
+/* Define your main colors as CSS variables */
+:root {
+  --color-light-bg: #F0F0F4;
+  --color-dark-primary: #26313F;
+  --color-accent: #64DA91;
+}
+
+html {
   scroll-behavior: smooth;
 }
 
+.font-urbanist {
+  font-family: "Urbanist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
 
-
-
- .font-urbanist {
-     font-family: "Urbanist", sans-serif;
-     font-optical-sizing: auto;
-     font-weight: 400;
-     font-style: normal;
- }
-
-
- .blur-light {
-     filter: blur(1px);
- }
+.blur-light {
+  filter: blur(1px);
+}

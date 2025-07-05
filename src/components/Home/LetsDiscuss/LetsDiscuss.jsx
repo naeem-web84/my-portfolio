@@ -36,14 +36,14 @@ function LetsDiscuss() {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
-  if (validateForm()) {
-    toast.success("Thank you for knocking! I'll get back to you soon.");
-    setTimeout(() => {
-      navigate(-1); // same as Back button
-    }, 1500);
-  }
-};
+    e.preventDefault();
+    if (validateForm()) {
+      toast.success("Thank you for knocking! I'll get back to you soon.");
+      setTimeout(() => {
+        navigate(-1);
+      }, 1500);
+    }
+  };
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -52,36 +52,52 @@ function LetsDiscuss() {
     }));
     setErrors((prev) => ({
       ...prev,
-      [e.target.name]: "", // Clear error as user types
+      [e.target.name]: "",
     }));
   };
 
   return (
-    <section id="contact" className="py-20 px-6 bg-primary text-white font-urbanist">
+    <section
+      id="contact"
+      className="py-20 px-6"
+      style={{
+        backgroundColor: "var(--color-light-bg)", // #F0F0F4
+        color: "var(--color-dark-primary)", // #26313F
+        fontFamily: "'Urbanist', sans-serif",
+      }}
+    >
       <Toaster position="bottom-right" />
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 justify-around gap-12 items-start">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         {/* Left side: Contact Info */}
-        <div className="md:col-span-1 lg:border-r lg:border-r-secondary pr-2" data-aos="fade-up">
-          <h2 className="text-4xl font-extrabold mb-4 text-white">Contact</h2>
-          <p className="text-accent mb-6">
+        <div
+          className="md:col-span-1 lg:border-r lg:border-[var(--color-accent)] pr-6"
+          data-aos="fade-up"
+        >
+          <h2
+            className="text-4xl font-extrabold mb-4"
+            style={{ color: "var(--color-dark-primary)" }}
+          >
+            Contact
+          </h2>
+          <p className="mb-6" style={{ color: "#000000" }}>
             I’m always open to discuss your ideas or work together on something great.
           </p>
-          <div className="space-y-4 text-lg">
+          <div className="space-y-5 text-lg" style={{ color: "#000000" }}>
             <div className="flex items-center gap-4">
-              <FiPhone className="text-2xl text-secondary" />
+              <FiPhone className="text-2xl" style={{ color: "#000000" }} />
               <span>+880 1712 499 084</span>
             </div>
             <div className="flex items-center gap-4">
-              <FiMail className="text-2xl text-secondary" />
+              <FiMail className="text-2xl" style={{ color: "#000000" }} />
               <span>naeemislam.hasan74@gmail.com</span>
             </div>
             <div className="flex items-center gap-4">
-              <FiMessageSquare className="text-2xl text-secondary" />
+              <FiMessageSquare className="text-2xl" style={{ color: "#000000" }} />
               <span>WhatsApp: +880 1538 390 0084</span>
             </div>
             <div className="flex items-center gap-4">
-              <FiMapPin className="text-2xl text-secondary" />
+              <FiMapPin className="text-2xl" style={{ color: "#000000" }} />
               <span>Rangpur, Bangladesh</span>
             </div>
           </div>
@@ -92,66 +108,81 @@ function LetsDiscuss() {
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="flex flex-col gap-5 max-w-md mx-auto w-full"
+            className="flex flex-col gap-6 max-w-md mx-auto"
             noValidate
           >
-            <div>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your Name"
-                className={`p-3 rounded-md bg-transparent border ${
-                  errors.name ? "border-red-500" : "border-white"
-                } text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary transition w-full`}
-              />
-              {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
-            </div>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Your Name"
+              className={`p-3 rounded-md border ${
+                errors.name
+                  ? "border-red-500"
+                  : "border-[var(--color-dark-primary)]"
+              } focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] bg-white placeholder-gray-400 transition w-full`}
+              style={{ color: "var(--color-dark-primary)" }}
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name}</p>
+            )}
 
-            <div>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Your Email"
-                className={`p-3 rounded-md bg-transparent border ${
-                  errors.email ? "border-red-500" : "border-white"
-                } text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary transition w-full`}
-              />
-              {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
-            </div>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Your Email"
+              className={`p-3 rounded-md border ${
+                errors.email
+                  ? "border-red-500"
+                  : "border-[var(--color-dark-primary)]"
+              } focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] bg-white placeholder-gray-400 transition w-full`}
+              style={{ color: "var(--color-dark-primary)" }}
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email}</p>
+            )}
 
-            <div>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Your Message"
-                rows={5}
-                className={`p-3 rounded-md bg-transparent border ${
-                  errors.message ? "border-red-500" : "border-white"
-                } text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary resize-none transition w-full`}
-              />
-              {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
-            </div>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Your Message"
+              rows={5}
+              className={`p-3 rounded-md border ${
+                errors.message
+                  ? "border-red-500"
+                  : "border-[var(--color-dark-primary)]"
+              } focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] bg-white placeholder-gray-400 transition resize-none w-full`}
+              style={{ color: "var(--color-dark-primary)" }}
+            />
+            {errors.message && (
+              <p className="text-red-500 text-sm">{errors.message}</p>
+            )}
 
             <div className="flex gap-4">
               <button
                 type="submit"
-                className="border border-secondary text-secondary hover:bg-secondary hover:text-black px-8 py-3 rounded-md transition w-max"
+                className="px-8 py-3 rounded-md border cursor-pointer transition w-max"
+                style={{
+                  color: "var(--color-dark-primary)",
+                  borderColor: "var(--color-dark-primary)",
+                  backgroundColor: "transparent",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor =
+                    "var(--color-dark-primary)";
+                  e.currentTarget.style.color = "#FFFFFF";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                  e.currentTarget.style.color = "var(--color-dark-primary)";
+                }}
               >
                 Send Message
-              </button>
-
-              <button
-                type="button"
-                onClick={() => navigate(-1)}
-                className="border border-gray-500 text-gray-400 hover:bg-gray-600 hover:text-white px-8 py-3 rounded-md transition w-max"
-              >
-                Back
-              </button>
+              </button> 
             </div>
           </form>
         </div>
