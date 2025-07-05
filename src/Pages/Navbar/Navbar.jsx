@@ -47,7 +47,7 @@ function Navbar() {
     >
       <Toaster position="bottom-right" />
 
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-8 py-3">
+      <div className="max-w-6xl mx-auto flex items-center justify-between md:px-8 py-3">
         {/* Logo */}
         <Logo />
 

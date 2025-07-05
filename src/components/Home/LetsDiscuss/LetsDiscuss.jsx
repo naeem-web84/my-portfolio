@@ -59,10 +59,10 @@ function LetsDiscuss() {
   return (
     <section
       id="contact"
-      className="py-20 px-6"
+      className="py-20 px-6 overflow-x-hidden"
       style={{
-        backgroundColor: "var(--color-light-bg)", // #F0F0F4
-        color: "var(--color-dark-primary)", // #26313F
+        backgroundColor: "var(--color-light-bg)",
+        color: "var(--color-dark-primary)",
         fontFamily: "'Urbanist', sans-serif",
       }}
     >
@@ -80,25 +80,25 @@ function LetsDiscuss() {
           >
             Contact
           </h2>
-          <p className="mb-6" style={{ color: "#000000" }}>
+          <p className="mb-6 text-black">
             I’m always open to discuss your ideas or work together on something great.
           </p>
-          <div className="space-y-5 text-lg" style={{ color: "#000000" }}>
-            <div className="flex items-center gap-4">
-              <FiPhone className="text-2xl" style={{ color: "#000000" }} />
-              <span>+880 1712 499 084</span>
+          <div className="space-y-5 text-lg text-black">
+            <div className="flex items-start gap-4">
+              <FiPhone className="text-2xl mt-1" />
+              <span className="break-words">+880 1712 499 084</span>
             </div>
-            <div className="flex items-center gap-4">
-              <FiMail className="text-2xl" style={{ color: "#000000" }} />
-              <span>naeemislam.hasan74@gmail.com</span>
+            <div className="flex items-start gap-4">
+              <FiMail className="text-2xl mt-1" />
+              <span className="break-all">naeemislam.hasan74@gmail.com</span>
             </div>
-            <div className="flex items-center gap-4">
-              <FiMessageSquare className="text-2xl" style={{ color: "#000000" }} />
-              <span>WhatsApp: +880 1538 390 0084</span>
+            <div className="flex items-start gap-4">
+              <FiMessageSquare className="text-2xl mt-1" />
+              <span className="break-words">WhatsApp: +880 1538 390 0084</span>
             </div>
-            <div className="flex items-center gap-4">
-              <FiMapPin className="text-2xl" style={{ color: "#000000" }} />
-              <span>Rangpur, Bangladesh</span>
+            <div className="flex items-start gap-4">
+              <FiMapPin className="text-2xl mt-1" />
+              <span className="break-words">Rangpur, Bangladesh</span>
             </div>
           </div>
         </div>
@@ -124,9 +124,7 @@ function LetsDiscuss() {
               } focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] bg-white placeholder-gray-400 transition w-full`}
               style={{ color: "var(--color-dark-primary)" }}
             />
-            {errors.name && (
-              <p className="text-red-500 text-sm">{errors.name}</p>
-            )}
+            {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
 
             <input
               type="email"
@@ -141,9 +139,7 @@ function LetsDiscuss() {
               } focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] bg-white placeholder-gray-400 transition w-full`}
               style={{ color: "var(--color-dark-primary)" }}
             />
-            {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email}</p>
-            )}
+            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
 
             <textarea
               name="message"
@@ -158,9 +154,7 @@ function LetsDiscuss() {
               } focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] bg-white placeholder-gray-400 transition resize-none w-full`}
               style={{ color: "var(--color-dark-primary)" }}
             />
-            {errors.message && (
-              <p className="text-red-500 text-sm">{errors.message}</p>
-            )}
+            {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
 
             <div className="flex gap-4">
               <button
@@ -172,8 +166,7 @@ function LetsDiscuss() {
                   backgroundColor: "transparent",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor =
-                    "var(--color-dark-primary)";
+                  e.currentTarget.style.backgroundColor = "var(--color-dark-primary)";
                   e.currentTarget.style.color = "#FFFFFF";
                 }}
                 onMouseLeave={(e) => {
@@ -182,7 +175,7 @@ function LetsDiscuss() {
                 }}
               >
                 Send Message
-              </button> 
+              </button>
             </div>
           </form>
         </div>

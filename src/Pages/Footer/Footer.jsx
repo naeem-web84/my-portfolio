@@ -48,21 +48,21 @@ export default function Footer() {
 
   return (
     <footer
-      className="py-10 border-t"
+      className="py-10 border-t w-full"
       style={{
         backgroundColor: "var(--color-light-bg)",
         color: "var(--color-dark-primary)",
         borderColor: "rgba(38, 49, 63, 0.2)",
       }}
     >
-      <div className="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-6">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-wrap sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
         {/* Left - Logo */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 justify-center sm:justify-start w-full sm:w-auto">
           <Logo />
         </div>
 
         {/* Center - Nav Links */}
-        <div className="flex gap-6 text-sm">
+        <div className="flex flex-wrap justify-center gap-4 text-sm">
           {footerNavItems.map(({ name, to }) => (
             <Link
               key={name}
@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
 
         {/* Right - Social Icons */}
-        <div className="flex gap-4 text-lg">
+        <div className="flex gap-4 text-lg justify-center sm:justify-end w-full sm:w-auto">
           {socialLinks.map((link, idx) => (
             <a
               key={idx}
@@ -93,8 +93,12 @@ export default function Footer() {
               aria-label={link.url}
               className="transition-colors"
               style={{ color: "var(--color-dark-primary)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-accent)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-dark-primary)")}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = "var(--color-accent)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = "var(--color-dark-primary)")
+              }
             >
               {link.icon}
             </a>
